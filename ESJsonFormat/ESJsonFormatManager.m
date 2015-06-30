@@ -37,6 +37,12 @@
 }
 
 - (ESFormatInfo *)parseWithDic:(NSDictionary *)dic{
+    /**
+     *  Setting Default Config
+     */
+    _formatNumberType = ESFormatNumber_BoxType;
+    _memMgnType = ESFormatMemMgntType_Copy;
+    
     NSMutableString *resultStr = [NSMutableString string];
     [dic enumerateKeysAndObjectsUsingBlock:^(id key, NSObject *obj, BOOL *stop) {
         [resultStr appendFormat:@"\n%@\n",[self formatWithKey:key value:obj]];
@@ -129,11 +135,11 @@
     NSString * typeStr;
     if ([value isKindOfClass:[NSString class]]) {
         
-        return [self displayRootStringWithKeyStr:value];
+        return [self displayRootStringWithKeyStr:key];
         
     }else if([value isKindOfClass:[NSNumber class]]){
         
-        return [self displayRootStringWithNumberType:value];
+        return [self displayRootStringWithNumberType:key];
         
     }else if([value isKindOfClass:[NSArray class]]){
         
