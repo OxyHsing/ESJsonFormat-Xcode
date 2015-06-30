@@ -50,48 +50,103 @@
     return self.formatInfo;
 }
 
-- (NSString *)formatWithKey:(NSString *)key value:(NSObject *)value{
-    NSString *qualifierStr = @"copy";
-    NSString *typeStr = @"NSString";
-    if ([value isKindOfClass:[NSString class]]) {
-        return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,key];
-    }else if([value isKindOfClass:[NSNumber class]]){
-        qualifierStr = @"assign";
-        NSString *valueStr = [NSString stringWithFormat:@"%@",value];
-        if ([valueStr rangeOfString:@"."].location!=NSNotFound){
-            typeStr = @"CGFloat";
-        }else{
-            NSNumber *valueNumber = (NSNumber *)value;
-            if ([valueNumber longValue]<2147483648) {
-                typeStr = @"NSInteger";
+-(NSString *)displayRootStringWithKeyStr:(NSString *)keyString
+{
+    NSString * qualifierStr;
+    NSString * typeStr = @"NSString";
+    switch (_memMgnType) {
+
+        case ESFormatMemMgntType_StrongRef:
+            qualifierStr = @"strong";
+            break;
+        case ESFormatMemMgntType_WeakRef:
+            qualifierStr = @"weak";
+            break;
+        case ESFormatMemMgntType_Copy:
+        default:
+            qualifierStr = @"copy";
+            break;
+    }
+    
+    return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,keyString];
+}
+- (NSString *)displayRootStringWithNumberType:(NSString *)valueString
+{
+    NSString * qualifierStr;
+    NSString * typeStr = @"NSString";
+    switch (_formatNumberType) {
+        case ESFormatNumber_BoxType:
+            qualifierStr = @"copy";
+            return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,valueString];
+            break;
+        case ESFormatNumber_DirectType:
+        default:
+            qualifierStr = @"assign";
+            NSString *valueStr = [NSString stringWithFormat:@"%@",valueString];
+            if ([valueStr rangeOfString:@"."].location!=NSNotFound){
+                typeStr = @"CGFloat";
             }else{
-                typeStr = @"long long";
+                NSNumber *valueNumber = (NSNumber *)valueString;
+                if ([valueNumber longValue]<2147483648) {
+                    typeStr = @"NSInteger";
+                }else{
+                    typeStr = @"long long";
+                }
             }
-        }
-        return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ %@;",qualifierStr,typeStr,key];
-    }else if([value isKindOfClass:[NSArray class]]){
-        NSArray *array = (NSArray *)value;
+             return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ %@;",qualifierStr,typeStr,valueString];
+            break;
+    }
+}
+- (NSString *)displayRootStringWithArrayType:(NSObject *)value
+{
+    NSString * qualifierStr;
+    NSString * typeStr;
+    qualifierStr = @"strong";
+    typeStr = @"NSArray";
+    return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,value];
+}
+
+- (NSString *)displayRootStrDicWithkey:(NSString *)key
+                              andValue:(NSObject *)value
+{
+    NSString * qualifierStr;
+    NSString * typeStr;
+    qualifierStr = @"strong";
+    typeStr = self.replaceClassNames[key];
+    if (!typeStr) {
+        typeStr = [key capitalizedString];
+    }
+    ESClassInfo *info = [[ESClassInfo alloc] init];
+    info.className = typeStr;
+    info.classDic = (NSDictionary *)value;
+    [self.classArray addObject:info];
+    
+    return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,key];
+}
+
+- (NSString *)formatWithKey:(NSString *)key value:(NSObject *)value{
+    NSString * qualifierStr;
+    NSString * typeStr;
+    if ([value isKindOfClass:[NSString class]]) {
         
+        return [self displayRootStringWithKeyStr:value];
+        
+    }else if([value isKindOfClass:[NSNumber class]]){
+        
+        return [self displayRootStringWithNumberType:value];
+        
+    }else if([value isKindOfClass:[NSArray class]]){
+        
+        NSArray *array = (NSArray *)value;
         ESClassInfo *info = [[ESClassInfo alloc] init];
         info.className = self.replaceClassNames[key];
         info.classDic = [array firstObject];
         [self.classArray addObject:info];
+        return [self displayRootStringWithArrayType:value];
         
-        qualifierStr = @"strong";
-        typeStr = @"NSArray";
-        return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,key];
     }else if ([value isKindOfClass:[NSDictionary class]]){
-        qualifierStr = @"strong";
-        typeStr = self.replaceClassNames[key];
-        if (!typeStr) {
-            typeStr = [key capitalizedString];
-        }
+        return [self displayRootStrDicWithkey:key andValue:value];
         
-        ESClassInfo *info = [[ESClassInfo alloc] init];
-        info.className = typeStr;
-        info.classDic = (NSDictionary *)value;
-        [self.classArray addObject:info];
-        return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,key];
     }else if([value isKindOfClass:[@(YES) class]]){
         qualifierStr = @"assign";
         typeStr = @"BOOL";
