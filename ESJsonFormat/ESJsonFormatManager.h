@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NS_ENUM(NSUInteger, ESFormatNullTypeSetting){
+    ESFormatNullType_ToString = 0,
+    ESFormatNullType_ToNumber,
+    ESFormatNullType_To
+};
+
 /**
  *  Define how JSON number, bool value mapping to corresponding type of NSObject
  */

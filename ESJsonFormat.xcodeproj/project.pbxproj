@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D68D7D11B42873D00792D38 /* ESJsonFormatTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D68D7D01B42873D00792D38 /* ESJsonFormatTest.m */; };
+		4D68D7D61B42876800792D38 /* ESJsonFormarTopDownTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D68D7D51B42876800792D38 /* ESJsonFormarTopDownTest.m */; };
 		4FF8F33E1B400F8B005C73C2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF8F33D1B400F8B005C73C2 /* AppKit.framework */; };
 		4FF8F3401B400F8B005C73C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FF8F33F1B400F8B005C73C2 /* Foundation.framework */; };
 		4FF8F3451B400F8B005C73C2 /* ESJsonFormat.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 4FF8F3441B400F8B005C73C2 /* ESJsonFormat.xcscheme */; };
@@ -23,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D68D7CC1B42873D00792D38 /* ESJsonFormatTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ESJsonFormatTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D68D7CF1B42873D00792D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D68D7D01B42873D00792D38 /* ESJsonFormatTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ESJsonFormatTest.m; sourceTree = "<group>"; };
+		4D68D7D51B42876800792D38 /* ESJsonFormarTopDownTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESJsonFormarTopDownTest.m; sourceTree = "<group>"; };
 		4FF8F33A1B400F8B005C73C2 /* ESJsonFormat.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ESJsonFormat.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF8F33D1B400F8B005C73C2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		4FF8F33F1B400F8B005C73C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -50,6 +56,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4D68D7C91B42873D00792D38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF8F3381B400F8B005C73C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,10 +75,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D68D7CD1B42873D00792D38 /* ESJsonFormatTest */ = {
+			isa = PBXGroup;
+			children = (
+				4D68D7D01B42873D00792D38 /* ESJsonFormatTest.m */,
+				4D68D7D51B42876800792D38 /* ESJsonFormarTopDownTest.m */,
+				4D68D7CE1B42873D00792D38 /* Supporting Files */,
+			);
+			path = ESJsonFormatTest;
+			sourceTree = "<group>";
+		};
+		4D68D7CE1B42873D00792D38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4D68D7CF1B42873D00792D38 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		4FF8F3311B400F8B005C73C2 = {
 			isa = PBXGroup;
 			children = (
 				4FF8F3411B400F8B005C73C2 /* ESJsonFormat */,
+				4D68D7CD1B42873D00792D38 /* ESJsonFormatTest */,
 				4FF8F33C1B400F8B005C73C2 /* Frameworks */,
 				4FF8F33B1B400F8B005C73C2 /* Products */,
 			);
@@ -75,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				4FF8F33A1B400F8B005C73C2 /* ESJsonFormat.xcplugin */,
+				4D68D7CC1B42873D00792D38 /* ESJsonFormatTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +184,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4D68D7CB1B42873D00792D38 /* ESJsonFormatTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D68D7D41B42873D00792D38 /* Build configuration list for PBXNativeTarget "ESJsonFormatTest" */;
+			buildPhases = (
+				4D68D7C81B42873D00792D38 /* Sources */,
+				4D68D7C91B42873D00792D38 /* Frameworks */,
+				4D68D7CA1B42873D00792D38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ESJsonFormatTest;
+			productName = ESJsonFormatTest;
+			productReference = 4D68D7CC1B42873D00792D38 /* ESJsonFormatTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4FF8F3391B400F8B005C73C2 /* ESJsonFormat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FF8F34E1B400F8B005C73C2 /* Build configuration list for PBXNativeTarget "ESJsonFormat" */;
@@ -178,6 +228,9 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = EnjoySR;
 				TargetAttributes = {
+					4D68D7CB1B42873D00792D38 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
 					4FF8F3391B400F8B005C73C2 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -196,11 +249,19 @@
 			projectRoot = "";
 			targets = (
 				4FF8F3391B400F8B005C73C2 /* ESJsonFormat */,
+				4D68D7CB1B42873D00792D38 /* ESJsonFormatTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4D68D7CA1B42873D00792D38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF8F3371B400F8B005C73C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +275,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4D68D7C81B42873D00792D38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D68D7D61B42876800792D38 /* ESJsonFormarTopDownTest.m in Sources */,
+				4D68D7D11B42873D00792D38 /* ESJsonFormatTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FF8F3361B400F8B005C73C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +302,44 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		4D68D7D21B42873D00792D38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ESJsonFormatTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4D68D7D31B42873D00792D38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ESJsonFormatTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		4FF8F34C1B400F8B005C73C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -336,6 +444,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4D68D7D41B42873D00792D38 /* Build configuration list for PBXNativeTarget "ESJsonFormatTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D68D7D21B42873D00792D38 /* Debug */,
+				4D68D7D31B42873D00792D38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		4FF8F3351B400F8B005C73C2 /* Build configuration list for PBXProject "ESJsonFormat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -352,6 +468,7 @@
 				4FF8F3501B400F8B005C73C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

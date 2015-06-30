@@ -55,7 +55,24 @@
     self.formatInfo.pasteboardContent = resultStr;
     return self.formatInfo;
 }
+#pragma mark 
+#pragma Magic Pieces
+- (NSString *)convertNormalStringToCamelString:(NSString *)toBeConvertedString
+{
+    NSMutableString * convertedString = [toBeConvertedString mutableCopy];
+    [toBeConvertedString enumerateSubstringsInRange:NSMakeRange(0, [toBeConvertedString length])
+                                       options:NSStringEnumerationByWords | NSStringEnumerationLocalized
+                                    usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                        [convertedString replaceCharactersInRange:substringRange
+                                                                      withString:[substring capitalizedStringWithLocale:[NSLocale currentLocale]]];
+                                        *stop = YES;
+                                    }];
+    return [convertedString copy];
+}
 
+
+#pragma mark -
+#pragma mark DisPlay Magics
 -(NSString *)displayRootStringWithKeyStr:(NSString *)keyString
 {
     NSString * qualifierStr;
@@ -79,9 +96,10 @@
 - (NSString *)displayRootStringWithNumberType:(NSString *)valueString
 {
     NSString * qualifierStr;
-    NSString * typeStr = @"NSString";
+    NSString * typeStr;
     switch (_formatNumberType) {
         case ESFormatNumber_BoxType:
+            typeStr = @"NSNumber";
             qualifierStr = @"copy";
             return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,valueString];
             break;
@@ -129,6 +147,8 @@
     
     return [NSString stringWithFormat:@"@property (nonatomic, %@) %@ *%@;",qualifierStr,typeStr,key];
 }
+#pragma mark -
+#pragma Main Parsing Function
 
 - (NSString *)formatWithKey:(NSString *)key value:(NSObject *)value{
     NSString * qualifierStr;
